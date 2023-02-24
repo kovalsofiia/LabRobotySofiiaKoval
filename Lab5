@@ -1,0 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace Lab5KovalSofiia
+{
+    internal class Program
+    {
+        static int F4(int i)
+        {
+                  
+            int res, x_3, x_2, x_1, x_i;
+
+            if (i == 0)
+                return 0;
+
+            else if (i == 1 || i == 2)
+                return 9;
+            else if (i < 0)
+                return -100;
+            else
+            {
+
+                x_1 = 9;
+                x_2 = 9;
+                x_3 = 0;
+                x_i = 0;
+                for (int j = 3; j < i + 1; j++)
+                {
+                    x_i = x_1 + 4 * x_3;
+                    x_3 = x_2;
+                    x_2 = x_1;
+                    x_1 = x_i;
+                }
+                res = x_i;
+                return res;
+
+            } 
+        }
+
+        static int Factorial(int n)
+        {
+            
+            if (n == 0)
+                return 1;
+            else 
+                return Factorial(n - 1)*n;    
+        }
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("Task 1 Number 6");
+            Console.Write("Type n here for Task 1: ");
+            int evenNumber = Convert.ToInt32(Console.ReadLine());
+            int result1 = 0;
+            while (evenNumber >= 1)
+            {
+                result1 += (2 * evenNumber) * (2 * evenNumber) + (2 * evenNumber + 1) * (2 * evenNumber + 1) * (2 * evenNumber + 1);
+                evenNumber -= 1;
+            }
+            Console.WriteLine("{0}", result1);
+
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine("Task 2 Number 6");
+            Console.Write("Type a number that you need to convert here: ");
+            int n_2 = Convert.ToInt32(Console.ReadLine());
+            int result = 0;
+            while (n_2 > 0)
+            {
+                int resDiv = n_2 % 10;
+                result = result * 10 + resDiv;
+                n_2 = n_2 / 10;
+            }
+            Console.WriteLine(" Answer: your reversed number is " + result);
+
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("Task 3 Number 6");
+            Console.Write("Type n here: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Type x here: ");
+            int x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"n = {n}, x = {x}");
+            double leftResult = Math.Cos(x);
+            double rightResult = 0;
+            int i = 1;
+            while (i < n)
+            {
+                rightResult += Math.Pow(-1, n) * (Math.Pow(x, 2 * n)) / Factorial(2 * n);
+                i += 1;
+            }
+            Console.WriteLine($"left = {leftResult},right = {rightResult}");
+
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine("Task 4 Number 6");
+            Console.Write("Type n for Recursion here: ");
+            int n_4 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(" Result is: " + F4(n_4));
+
+        }
+    }
+}
