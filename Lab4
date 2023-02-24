@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab4SofiiaKoval
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Task 1 number 6
+            Console.WriteLine("Task 1 number 6");
+            Console.Write("Type lenght of diagonal of a square : ");
+            double diagonalOfSquare = Convert.ToDouble(Console.ReadLine());
+            if (diagonalOfSquare == 0)
+                Console.WriteLine("Type another number");
+            double sideOfSquare = diagonalOfSquare / Math.Sqrt(2);
+            double square = sideOfSquare * sideOfSquare;
+            double perimetry = 4 * sideOfSquare;
+            Console.WriteLine("Answer: square = {0}, perimeter = {1}", square, perimetry);
+            
+
+            //Task 2 Number 6
+            Console.WriteLine("Task 2 Number 6");
+            Console.Write("Type a here: ");
+            double a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Type b here: ");
+            double b = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Type c here: ");
+            double c = Convert.ToDouble(Console.ReadLine());
+            double max_first = Convert.ToDouble(Math.Max(a, b)); //max(a,b)
+            Console.WriteLine("max(a,b) = {0}", max_first);
+            double min_second = Convert.ToDouble(Math.Min(b, c)); //min(b,c)
+            Console.WriteLine("min(b,c) = {0}", min_second);
+            double square_of_min_second = min_second * min_second;
+            double result = max_first + square_of_min_second;
+            Console.WriteLine("Answer is: {0}", result);
+            
+
+            //Task 3 Number 6
+            Console.WriteLine("Task 3 Number 6");
+            Console.Write("Type coordinates of A here(x1): ");
+            int x1 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Type coordinates of A here(y1): ");
+            int y1 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Type coordinates of B here(x2): ");
+            int x2 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Type coordinates of B here(y2): ");
+            int y2 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Type coordinates of C here(x3): ");
+            int x3 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Type coordinates of B here(y3): ");
+            int y3 = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("A({0},{1}), B({2},{3}), C({4},{5})", x1, y1, x2, y2, x3, y3);
+            //lenghts
+            double AB = Math.Round(Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+            Console.WriteLine("AB = {0}", AB);
+            double BC = Math.Round(Math.Sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2)));
+            Console.WriteLine("BC = {0}", BC);
+            double AC = Math.Round(Math.Sqrt((x3 - x1) * (x3 - x1) + (y3 - y1) * (y3 - y1)));
+            Console.WriteLine("BC = {0}", AC);
+            //finding answer
+            if (Math.Abs(AB - BC) < 1e-6 && Math.Abs(AC - AB) < 1e-6)
+                Console.WriteLine("Answer: Trykutnyk rivnostoronniy");
+            else
+                Console.WriteLine("Answer: Ne rivnostoronny");
+
+            //Task 4 Number 6
+            Console.WriteLine("Task 4 Number 6");
+            Console.WriteLine("Type `x` here: ");
+            double x = Convert.ToDouble(Console.ReadLine());
+            int resultAnswer;
+            if (x >= 0 && x < 5)
+                resultAnswer = 1;
+            else if (x >= 5 && x < 8)
+                resultAnswer = 2;
+            else if (x < 0)
+                resultAnswer = 3;
+            else if (x >= 8)
+                resultAnswer = 4;
+            else
+                resultAnswer = 0;
+            Console.WriteLine("Your answer: y = {0}", resultAnswer);
+
+        }
+    }
+}
