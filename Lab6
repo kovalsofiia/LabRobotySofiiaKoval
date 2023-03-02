@@ -1,0 +1,211 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab6KovalSofiia
+{
+    internal class Program
+    {
+        /// <summary>
+        /// Функція яка створює згенерований рандомно масив
+        /// </summary>
+        /// <param name="arrayLength">Довжина(к-ть елементів)</param>
+        /// <param name="minRandomValue">Мінімальне значення генерування</param>
+        /// <param name="maxRandomValue">Максимальне значення генерування</param>
+        /// <returns>Згенерований масив</returns>
+        static double[] creatRandomArray(int arrayLength, int minRandomValue = 0, int maxRandomValue = 100)
+        {
+            /// <summary>
+            /// Function gives us an array created using random.
+            /// </summary>
+            
+
+
+            double[] arr = new double[arrayLength];
+            Random rnd = new Random(DateTime.Now.Millisecond);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = rnd.Next(minRandomValue, maxRandomValue);
+            }
+            return arr;
+        }
+        /// <summary>
+        /// Виводить на екран масив
+        /// </summary>
+        /// <param name="arr">Масив який потрібно надрукувати на екрані</param>
+        static void printArray(double[] arr)
+        
+
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write("{0},  ", arr[i]);
+            }
+            Console.WriteLine();
+        }
+        /// <summary>
+        /// Виводить на екран вектор
+        /// </summary>
+        /// <param name="arr">Вектор-масив який потрібно надрукувати</param>
+        static void printArrayVector(double[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write("{0},", arr[i]);
+            }
+
+            Console.WriteLine();
+        }
+        /// <summary>
+        /// Знаходить найменше значення з масиву
+        /// </summary>
+        /// <param name="array1">Введений масив звідки шукати значення</param>
+        /// <returns>Найменше значення</returns>
+        static double MinNumber(double[] array1)
+        {
+            double min = array1[0];
+            for (int i = 0; i < array1.Length; i++)
+            {
+                
+                if (array1[i] < min)
+                    min = array1[i];
+            }
+            return min;
+        }
+        /// <summary>
+        /// Введення масиву в програму поелементно
+        /// </summary>
+        /// <param name="array">Масив</param>
+        static void inputArray(double[] array)
+            //Function makes it possible to make an array from our numbers.
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write($"Element {array[i]} = ");
+                array[i] = Convert.ToDouble(Console.ReadLine());
+            }
+        }
+        /// <summary>
+        /// Перевіряє чи вектори паралельні
+        /// </summary>
+        /// <param name="array1">Перший масив-вектор</param>
+        /// <param name="array2">Другий масив-вектор</param>
+        /// <returns></returns>
+        static int AreVectorsParallel(double[] array1, double[] array2)
+            //Function verifies whether vectors are parallel or not.
+        {
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] == array2[i])
+                    return 1;
+            }
+            return 1;
+        }
+        /// <summary>
+        /// Факторіал числа 
+        /// </summary>
+        /// <param name="n">кількість елементів</param>
+        /// <returns>Повертає результату множення(факторіал)</returns>
+        static int Factorial(int n)
+        {           
+                int result = 1;
+                for (int i = 2; i <= n; i++)
+                {
+                    result *= i;
+                }
+                return result;
+        }
+        /// <summary>
+        /// Обчислює за формулою із умови 
+        /// </summary>
+        /// <param name="lenArray">Довжина массиву</param>
+        /// <param name="b">Значення кута</param>
+        /// <returns></returns>
+        static double[] inputArr(int lenArray, int b)
+        {
+            double[] arr = new double[lenArray];
+            for (int n = 0; n < arr.Length; n++)
+            {
+                double a = 0;
+                arr[n] = 0;
+                for (int i = 1; i < lenArray + 1; i++)
+                {
+                    a += Factorial(i) * Math.Sin(i * b);
+                }
+                arr[n] = a;
+                lenArray--;
+            }
+            return arr;
+        }
+        /// <summary>
+        /// Змінює та друкує масив таким чином, щоб елементи які рівні нулю були спереду
+        /// </summary>
+        /// <param name="lenArray">довжина масиву</param>
+        /// <param name="array">початковий масив</param>
+        static void changedArray(int lenArray, double [] array)
+        {
+            int k = 0;
+            for (int i = 0; i < lenArray; i++)
+            {
+                if (array[i] == 0)
+                {
+                    double temporaryResult = array[k];
+                    array[k] = array[i];
+                    array[i] = temporaryResult;
+                    k++;
+
+                }
+
+            }
+
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Task 1 Number 6");
+                Console.Write("Type how many numbers you want in your array: ");
+                int n = Convert.ToInt32(Console.ReadLine());
+                double[] array1 = new double[n]; //creating an array for that amount of numbers
+                array1 = creatRandomArray(n, 0, 100);
+                printArray(array1);
+                double answer = MinNumber(array1);
+                Console.WriteLine("Your min number from array is: {0}", answer);
+
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine("Task 2 Number 6");
+                Console.WriteLine("Type amount(n) here: ");
+                int amount = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Type angle(b) here: ");
+                int angle = Convert.ToInt32(Console.ReadLine());
+                double[] array2 = inputArr(amount, angle);
+                Console.WriteLine("Min element is : {0}", array2.Min());
+
+                Console.WriteLine("---------------------------------------------------");
+
+                Console.WriteLine("Task 3 Number 6");
+                Console.Write("Type your n here: ");
+                int n3 = Convert.ToInt32(Console.ReadLine());
+                double[] array3 = new double[n3];
+                double[] array3_1 = new double[n3];
+                inputArray(array3);
+                printArrayVector(array3);
+                inputArray(array3_1);
+                printArrayVector(array3_1);
+                int result = AreVectorsParallel(array3, array3_1);
+                Console.WriteLine($"If they are parallel answer is 1, if not = 0\nYour answer:{result}");
+
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine("Task 4 Number 6");
+                Console.WriteLine("Type lenght(amount of elements) here: ");
+                int arrayLength = Convert.ToInt32(Console.ReadLine());
+                double[] array4 = creatRandomArray(arrayLength, -10, 10);
+                printArray(array4);
+            }
+
+
+        }
+    }
+}
